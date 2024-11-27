@@ -2,16 +2,17 @@ public class HouseRobberII {
 
     int rob(int[] nums) {
 
+        int n=nums.length;
         // Handle edge cases
-        if (nums.length == 1) {
+        if (n == 1) {
             return nums[0];
         }
 
         // Create 2 new arrays
-        int[] skipLastHouse = new int[nums.length - 1];
-        int[] skipFirstHouse = new int[nums.length - 1];
+        int[] skipLastHouse = new int[n - 1];
+        int[] skipFirstHouse = new int[n - 1];
 
-        for (int i = 0; i < nums.length - 1; i++) {
+        for (int i = 0; i < n - 1; i++) {
             skipLastHouse[i] = nums[i];
             skipFirstHouse[i] = nums[i + 1];
         }
@@ -26,8 +27,9 @@ public class HouseRobberII {
 
     private int robHelper(int[] nums) {
 
+        int n=nums.length;
         // Handle edge cases
-        if (nums.length == 1) {
+        if (n == 1) {
             return nums[0];
         }
 
@@ -36,11 +38,11 @@ public class HouseRobberII {
         dp[0] = nums[0];
         dp[1] = Math.max(nums[0], nums[1]);
 
-        for (int i = 2; i < nums.length; i++) {
+        for (int i = 2; i < n; i++) {
             dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1]);
         }
 
-        return dp[nums.length - 1];
+        return dp[n - 1];
     }
 }
 
